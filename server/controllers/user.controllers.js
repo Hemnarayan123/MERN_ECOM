@@ -118,6 +118,31 @@ const userLogin = async (req, res) => {
   }
 };
 
+
+// ..............................................................user profile 
+const profile = async (req, res) => {
+  const token = req.header('auth-token');
+  if (!token) {
+    console.log("No token provided");
+    return res.status(401).send('Access denied');
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_TOKEN_KEY);
+    console.log("Token decoded:", decoded);
+    const user = await User.findById(decoded.userId).select('-password');
+    if (!user) {
+      console.log("User not found");
+      return res.status(404).send('User not found');
+    }
+    res.send(user);
+  } catch (err) {
+    console.log("Error:", err.message);
+    res.status(400).send('Invalid token');
+  }
+};
+
+
 //................................................................forget
 const ForgetPassword = async (req, res) => {
   const { email } = req.body;
@@ -189,4 +214,4 @@ const ResetPassword = async (req, res) => {
 
 
 
-export { userRegister, userLogin, ForgetPassword, ResetPassword };
+export { userRegister, userLogin, ForgetPassword, ResetPassword, profile } 

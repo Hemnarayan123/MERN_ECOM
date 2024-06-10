@@ -57,7 +57,7 @@ const Header = () => {
             </button>
             {accountDropdownOpen && (
               <div className="absolute right-0 t mt-2 w-48 bg-white rounded shadow-lg py-2 z-10">
-                <Link to={'/#'} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
+                <Link to={'/profile'} className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Profile</Link>
                 <Link to="/order" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Orders</Link>
                 <Link to="/wishlist" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Wishlist</Link>
                 <Link to ="/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Settings</Link>

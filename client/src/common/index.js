@@ -21,6 +21,10 @@ const summaryAPI = {
    reset: {
     url: `${backendUrl}/api/v1/reset_password`,
    },
+
+   profile: {
+      url: `${backendUrl}/api/v1/profile`,
+   }
 }
 
 export { summaryAPI} 

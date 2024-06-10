@@ -11,6 +11,7 @@ import EmailConfirmation from './components/Pages/EmailConfirmation.jsx';
 import Home from './components/Pages/Home.jsx';
 import Login from './components/Auth/Login.jsx';
 import Signup from './components/Auth/Signup.jsx';
+import Profile from './components/Pages/Profile.jsx';
 
 
 
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
           { path: '/signout', element: <SignOut/> },
           { path: '/forget_password', element: <ForgetPassword/> },
           { path: '/reset_password/:id/:token', element: <ResetPassword/> },
-          { path: '/email_confirmation', element: <EmailConfirmation/> }, 
+          { path: '/email_confirmation', element: <EmailConfirmation/> },
+          { path: '/profile', element: <Profile/> }, 
       ]
   },
 ])
