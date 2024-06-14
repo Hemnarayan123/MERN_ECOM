@@ -22,6 +22,11 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required"],
     },
 
+    role: {
+      type: "String",
+      default: "user",
+    },
+
     token:{
       type : String,
     },
@@ -60,6 +65,7 @@ userSchema.methods.generateToken = function () {
       {
         userId: this._id.toString(),
         email: this.email,
+        role: this.role,
       },
       process.env.JWT_SECRET_TOKEN_KEY,
       {

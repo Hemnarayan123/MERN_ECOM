@@ -105,6 +105,7 @@ const userLogin = async (req, res) => {
       message: "User Login Successfully !!",
       token: token,
       data : userExist._id,
+      role: userExist.role,
       error: false,
       success: true,
     });

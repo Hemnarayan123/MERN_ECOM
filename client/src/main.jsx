@@ -12,6 +12,11 @@ import Home from './components/Pages/Home.jsx';
 import Login from './components/Auth/Login.jsx';
 import Signup from './components/Auth/Signup.jsx';
 import Profile from './components/Pages/Profile.jsx';
+import AdminDashboard from './components/Pages/AdminDashboard.jsx';
+import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
+import Contact from './components/Pages/Contact.jsx';
+
+
 
 
 
@@ -28,6 +33,12 @@ const router = createBrowserRouter([
           { path: '/reset_password/:id/:token', element: <ResetPassword/> },
           { path: '/email_confirmation', element: <EmailConfirmation/> },
           { path: '/profile', element: <Profile/> }, 
+          { path: '/contact', element: <Contact/> }, 
+          { path: 'dashboard', element: 
+            <ProtectedRoute roleRequired="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          },
       ]
   },
 ])

@@ -30,21 +30,30 @@ function Login() {
             "Content-Type": "application/json",
           },
         });
-  
-        if (response.status === 200 || response.status === 201) {
+         console.log('response', response);
+         if (response.status === 200 || response.status === 201) {
           toast.success("Sign In Success", {
             duration: 3000,
           });
-  
-          tokenGetLocalStorage(response.data.token)
-          navigate("/");
+          tokenGetLocalStorage(response.data.token, response.data.role);
+          console.log("role", response.data.role);
+    
+          // Role based navigation
+          if (response.data.role === "admin") {
+            console.log('true');
+            navigate("/dashboard");
+          } else {
+            console.log('false');
+            navigate("/");
+          }
         } else {
-          toast.error("Sign In Error", {
-            duration: 3000,
-          });
+          console.log(response.data.message);
         }
       } catch (error) {
         console.error("Error", error);
+        toast.error("Sign In Error", {
+          duration: 3000,
+        });
       }
     };
     return (
