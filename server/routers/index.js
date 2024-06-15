@@ -12,6 +12,11 @@ router.get('/profile', profile);
 
 
 
+import { getAllUsers } from '../controllers/admin.controller.js';
+import {auth, authorize} from '../middleware/authToken.js'
+
+router.get('/Allusers',auth, authorize(['admin']), getAllUsers);
+
 //.........................................................................................................
 
 export {router}

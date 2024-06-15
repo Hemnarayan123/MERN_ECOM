@@ -24,6 +24,10 @@ const summaryAPI = {
 
    profile: {
       url: `${backendUrl}/api/v1/profile`,
+   },
+
+   Allusers : {
+      url: `${backendUrl}/api/v1/Allusers`,
    }
 }
 

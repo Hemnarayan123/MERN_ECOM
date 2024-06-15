@@ -40,10 +40,8 @@ function Login() {
     
           // Role based navigation
           if (response.data.role === "admin") {
-            console.log('true');
             navigate("/dashboard");
           } else {
-            console.log('false');
             navigate("/");
           }
         } else {

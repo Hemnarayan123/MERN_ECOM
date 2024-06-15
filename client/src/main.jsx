@@ -15,6 +15,7 @@ import Profile from './components/Pages/Profile.jsx';
 import AdminDashboard from './components/Pages/AdminDashboard.jsx';
 import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
 import Contact from './components/Pages/Contact.jsx';
+import Allusers from './components/Pages/Allusers.jsx';
 
 
 
@@ -39,6 +40,8 @@ const router = createBrowserRouter([
               <AdminDashboard />
             </ProtectedRoute>
           },
+          { path: '/allusers', element: <Allusers/> }, 
+          
       ]
   },
 ])
