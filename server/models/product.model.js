@@ -2,8 +2,7 @@ import mongoose from 'mongoose'
 
 const productSchema = new mongoose.Schema({
     name: {
-
-        type: 'String',
+        type: String,
         required : true,
     },
 
@@ -13,19 +12,23 @@ const productSchema = new mongoose.Schema({
     },
 
     description: {
-        type: "String",
-        required: true,
+       type: String,
+       required: true,
     },
 
     category : {
-        type : 'String',
+        type : String,
         required: true,
         enum: ['fashion','sports', 'gadgets']
 
     },
-
-    created_at: {
-        type: "String",
-        default : Date.now
+    image: {
+        type: String,
+        required: true,
     }
+
 }, {timestamps: true})
+
+const Product = mongoose.model('Product', productSchema)
+export default Product;
+

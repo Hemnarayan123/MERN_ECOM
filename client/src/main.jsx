@@ -16,6 +16,7 @@ import AdminDashboard from './components/Pages/AdminDashboard.jsx';
 import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
 import Contact from './components/Pages/Contact.jsx';
 import Allusers from './components/Pages/Allusers.jsx';
+import AllProduct from './components/Pages/AllProduct.jsx';
 
 
 
@@ -40,7 +41,8 @@ const router = createBrowserRouter([
               <AdminDashboard />
             </ProtectedRoute>
           },
-          { path: '/allusers', element: <Allusers/> }, 
+          { path: '/all-users', element: <Allusers/> }, 
+          { path: '/all-products', element: <AllProduct/> }, 
           
       ]
   },

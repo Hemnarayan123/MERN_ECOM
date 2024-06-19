@@ -19,4 +19,16 @@ router.get('/Allusers',auth, authorize(['admin']), getAllUsers);
 
 //.........................................................................................................
 
+import { addProd, getProd, editProd, deleteProd } from '../controllers/product.controller.js';
+import { upload } from '../middleware/multer.js';
+
+router.post('/addProd', upload.single('file'),addProd);
+
+router.get('/getProd', getProd);
+
+router.put('/editProd/:id', upload.single('file'),editProd);
+
+router.delete('/deleteProd/:id', deleteProd);
+
+
 export {router}

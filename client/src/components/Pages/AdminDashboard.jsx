@@ -31,8 +31,8 @@ const AdminDashboard = () => {
         </div>
         {/*** Navigation ***/}
         <nav className='mt-8'>
-          <Link to="all-users" className='block px-2 py-2 hover:bg-gray-700 rounded'>All Users</Link>
-          <Link to="all-products" className='block px-2 py-2 hover:bg-gray-700 rounded'>All Products</Link>
+          <Link to="/all-users" className='block px-2 py-2 hover:bg-gray-700 rounded'>All Users</Link>
+          <Link to="/all-products" className='block px-2 py-2 hover:bg-gray-700 rounded'>All Products</Link>
         </nav>
       </aside>
 
