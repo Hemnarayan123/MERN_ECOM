@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'tailwindcss/tailwind.css';
+import { useAuth } from '../context/AuthToken';
 
 function AllProduct() {
   const [file, setFile] = useState(null);
@@ -8,9 +9,17 @@ function AllProduct() {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('fashion');
-  const [products, setProducts] = useState([]);
+  const [subcategory, setSubcategory] = useState('men');
   const [editingProduct, setEditingProduct] = useState(null);
   const [showForm, setShowForm] = useState(false);
+
+  const {products, fetchProducts} = useAuth()
+
+  const subcategories = {
+    fashion: ['men', 'women', 'baby'],
+    sports: ['indoor', 'outdoor'],
+    gadgets: ['smartphones', 'laptops', 'accessories']
+  };
 
   const handleUpdate = async () => {
     const formData = new FormData();
@@ -18,6 +27,7 @@ function AllProduct() {
     formData.append('price', price);
     formData.append('description', description);
     formData.append('category', category);
+    formData.append('subcategory', subcategory);
     formData.append('file', file);
 
     if (editingProduct) {
@@ -45,18 +55,9 @@ function AllProduct() {
     setPrice('');
     setDescription('');
     setCategory('fashion');
+    setSubcategory('men');
     setFile(null);
     setShowForm(false);
-  };
-
-  const fetchProducts = () => {
-    axios.get('http://localhost:1000/api/v1/getProd')
-      .then(res => {
-        setProducts(res.data.result);
-      })
-      .catch(err => {
-        console.log(err);
-      });
   };
 
   const handleEdit = (product) => {
@@ -65,6 +66,7 @@ function AllProduct() {
     setPrice(product.price);
     setDescription(product.description);
     setCategory(product.category);
+    setSubcategory(product.subcategory);
     setShowForm(true);
   };
 
@@ -86,6 +88,7 @@ function AllProduct() {
     setPrice('');
     setDescription('');
     setCategory('fashion');
+    setSubcategory('men');
     setFile(null);
   };
 
@@ -129,12 +132,24 @@ function AllProduct() {
             />
             <select 
               value={category} 
-              onChange={e => setCategory(e.target.value)} 
+              onChange={e => {
+                setCategory(e.target.value);
+                setSubcategory(subcategories[e.target.value][0]);
+              }} 
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
             >
               <option value="fashion">Fashion</option>
               <option value="sports">Sports</option>
               <option value="gadgets">Gadgets</option>
+            </select>
+            <select 
+              value={subcategory} 
+              onChange={e => setSubcategory(e.target.value)} 
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            >
+              {subcategories[category].map(sub => (
+                <option key={sub} value={sub}>{sub}</option>
+              ))}
             </select>
             <input 
               type="file" 
@@ -168,9 +183,9 @@ function AllProduct() {
               />
               <div className="flex-grow">
                 <h5 className="text-xl font-semibold mb-2">{product.name}</h5>
-                <p className="text-gray-700 mb-2">Price: ${product.price}</p>
+                <p className="text-gray-700 mb-2">Price: ₹<span> </span>{product.price}</p>
                 <p className="text-gray-600 mb-2">{product.description}</p>
-                <p className="text-gray-600">Category: {product.category}</p>
+                <p className="text-gray-600">Category: {product.category}</p>   {/* / {product.subcategory}*/}
               </div>
               <div className="flex-shrink-0">
                 <button 

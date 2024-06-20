@@ -2,9 +2,9 @@ import Product from "../models/product.model.js";
 
 
     const addProd = async (req, res) => {
-        const { name, price, description, category } = req.body;
+        const { name, price, description, category, subcategory } = req.body;
         try {
-          const product = await Product.create({ name, price, description,category, image: req.file.filename });
+          const product = await Product.create({ name, price, description,category,subcategory, image: req.file.filename });
           res.json({ result: product });
         } catch (err) {
           console.error('Error adding product:', err);
@@ -23,8 +23,8 @@ const getProd = async(req, res) => {
 }
 
 const editProd = async(req, res) => {
-    const { name, price, description, category } = req.body;
-  const updateData = { name, price, description, category };
+    const { name, price, description, category,subcategory } = req.body;
+  const updateData = { name, price, description, category,subcategory };
   if (req.file) {
     updateData.image = req.file.filename;
   }

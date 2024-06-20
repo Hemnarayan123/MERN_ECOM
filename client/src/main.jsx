@@ -17,6 +17,7 @@ import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
 import Contact from './components/Pages/Contact.jsx';
 import Allusers from './components/Pages/Allusers.jsx';
 import AllProduct from './components/Pages/AllProduct.jsx';
+import ProductDetail from './components/Pages/ProductDetail.jsx';
 
 
 
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
           { path: '/email_confirmation', element: <EmailConfirmation/> },
           { path: '/profile', element: <Profile/> }, 
           { path: '/contact', element: <Contact/> }, 
+          { path: '/product-detail/:id', element: <ProductDetail/> }, 
           { path: 'dashboard', element: 
             <ProtectedRoute roleRequired="admin">
               <AdminDashboard />

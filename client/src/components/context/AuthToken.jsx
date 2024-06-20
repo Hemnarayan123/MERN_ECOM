@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 import { createContext, useState, useContext } from "react";
 import {toast } from "react-hot-toast";
+import axios from "axios";
+
 
 export const AuthContext = createContext();
 
+
 export const AuthProvider = ({ children }) => {
+
+  //........................................................................
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [role, setRole] = useState(localStorage.getItem("role"));
 
@@ -12,13 +18,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("role", serverRole);
     setToken(serverToken);
     setRole(role);
-    // toast.success("Sign In Success", {
-    //   duration: 3000,
-    // });
   };
-
+//...........................................................
   const isSignIn = !!token;
-
+//...........................................................
   const SignoutUser = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
@@ -28,9 +31,26 @@ export const AuthProvider = ({ children }) => {
         duration: 3000,
       });
   };
+//...........................................................
+
+const [products, setProducts] = useState([]);
+
+  const fetchProducts = () => {
+    axios.get('http://localhost:1000/api/v1/getProd')
+      .then(res => {
+        setProducts(res.data.result);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  
+  useEffect(() => {
+    fetchProducts();
+  },[])
 
   return (
-    <AuthContext.Provider value={{token, tokenGetLocalStorage, isSignIn, SignoutUser, role }}>
+    <AuthContext.Provider value={{token, tokenGetLocalStorage, isSignIn, SignoutUser, role, products, fetchProducts }}>
       {children}
     </AuthContext.Provider>
   );
