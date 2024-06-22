@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './components/context/AuthToken'
 import Header from './components/Pages/Header'
 import Footer from './components/Pages/Footer'
+import { CartProvider } from './components/context/CartContext'
 
 
 function App() {
@@ -13,9 +14,11 @@ function App() {
 <>
 <Toaster />
 <AuthProvider>
+  <CartProvider>
 <Header/>
 <Outlet />
 <Footer/>
+</CartProvider>
 </AuthProvider>
 
 </> 

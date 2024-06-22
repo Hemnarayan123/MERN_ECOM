@@ -49,7 +49,7 @@ const Header = () => {
             >
               <FaUser className="mr-1" /> <IoIosArrowDown />
               <Link to="/cart" className="text-white flex items-center hover:text-gray-300">
-            <FaShoppingCart className="mr-1" />
+            <Link to={'/cart'}><FaShoppingCart className="mr-1" /></Link>
           </Link>
             </button>
             {accountDropdownOpen && (

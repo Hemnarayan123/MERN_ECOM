@@ -30,5 +30,16 @@ router.put('/editProd/:id', upload.single('file'),editProd);
 
 router.delete('/deleteProd/:id', deleteProd);
 
+//...................................................................................................
+import { addToCart, getCart, removeFromCart, updateCartItem } from '../controllers/cart.controller.js';
+
+
+
+router.post('/cart', auth, addToCart);
+router.get('/cart', auth, getCart);
+router.delete('/cart', auth, removeFromCart);
+router.put('/cart', auth, updateCartItem);
+
+
 
 export {router}
