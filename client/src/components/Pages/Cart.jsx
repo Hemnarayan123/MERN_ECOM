@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthToken';
 
 const Cart = () => {
   const { cart, updateCartItem, removeFromCart } = useCart();
   const { token } = useAuth();
+  const navigate = useNavigate();
 
   if (!cart || !cart.items.length) {
     return <div>Your cart is empty</div>;
@@ -22,6 +24,10 @@ const Cart = () => {
   };
 
   const totalAmount = cart.items.reduce((total, item) => total + item.product.price * item.quantity, 0);
+
+  const handleBuyNow = () => {
+    navigate('/buy-now', { state: { products: cart.items, totalAmount } });
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -66,7 +72,7 @@ const Cart = () => {
           Total: ₹{totalAmount}
         </div>
         <button
-          onClick={() => console.log('Buy Now')}
+          onClick={handleBuyNow}
           className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-700 mt-4"
         >
           Buy Now

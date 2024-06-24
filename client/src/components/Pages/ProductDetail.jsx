@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthToken';
 import { useCart } from '../context/CartContext';
 
@@ -7,14 +7,19 @@ const ProductDetail = () => {
   const { id } = useParams();
   const { products } = useAuth();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
   const product = products.find((product) => product._id === id);
 
   if (!product) {
     return <div>Product not found</div>;
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     addToCart(product._id, 1);
+  };
+
+  const handleBuyNow = () => {
+    navigate('/buy-now', { state: { product } });
   };
 
   return (
@@ -42,7 +47,7 @@ const ProductDetail = () => {
             <button className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-700">
               Wishlist
             </button>
-            <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-700">
+            <button className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-700" onClick={handleBuyNow}>
               Buy Now
             </button>
           </div>

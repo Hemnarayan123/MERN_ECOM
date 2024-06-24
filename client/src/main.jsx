@@ -19,6 +19,9 @@ import Allusers from './components/Pages/Allusers.jsx';
 import AllProduct from './components/Pages/AllProduct.jsx';
 import ProductDetail from './components/Pages/ProductDetail.jsx';
 import Cart from './components/Pages/Cart.jsx';
+import OrderPage from './components/Pages/OrderPage.jsx';
+// import OrderConfirmation from './components/Pages/OrderCon firmation.jsx';
+import BuyNowPage from './components/Pages/BuyNowPage.jsx';
 
 
 
@@ -40,6 +43,9 @@ const router = createBrowserRouter([
           { path: '/contact', element: <Contact/> }, 
           { path: '/product-detail/:id', element: <ProductDetail/> }, 
           { path: '/cart', element: <Cart/> }, 
+          { path: '/orders', element: <OrderPage /> }, 
+          // { path: '/order-confirmation', element: <OrderConfirmation /> },
+          { path: '/buy-now', element: <BuyNowPage /> }, 
           { path: 'dashboard', element: 
             <ProtectedRoute roleRequired="admin">
               <AdminDashboard />

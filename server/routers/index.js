@@ -41,5 +41,11 @@ router.delete('/cart', auth, removeFromCart);
 router.put('/cart', auth, updateCartItem);
 
 
+//...............................................................................................................
+import { placeOrder, getOrder } from '../controllers/order.controller.js';
+
+router.post('/order', auth, placeOrder);
+router.get('/order', auth, getOrder);
+
 
 export {router}

@@ -6,6 +6,7 @@ import { AuthProvider } from './components/context/AuthToken'
 import Header from './components/Pages/Header'
 import Footer from './components/Pages/Footer'
 import { CartProvider } from './components/context/CartContext'
+import { OrderProvider } from './components/context/OrderContext'
 
 
 function App() {
@@ -15,9 +16,11 @@ function App() {
 <Toaster />
 <AuthProvider>
   <CartProvider>
+  <OrderProvider>
 <Header/>
 <Outlet />
 <Footer/>
+</OrderProvider>
 </CartProvider>
 </AuthProvider>
 
