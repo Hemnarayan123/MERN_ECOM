@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 function Footer() {
   return (
@@ -12,13 +14,13 @@ function Footer() {
           </div>
           <ul className="flex space-x-4">
             <li>
-              <a href="#privacy" className="hover:text-gray-300">Privacy Policy</a>
+              <Link to={'/privacy'} className="hover:text-gray-300">Privacy Policy</Link>
             </li>
             <li>
-              <a href="#terms" className="hover:text-gray-300">Terms of Service</a>
+              <Link to={'/term'} className="hover:text-gray-300">Terms of Service</Link>
             </li>
             <li>
-              <a href="#contact" className="hover:text-gray-300">Contact</a>
+              <Link to={'/contact'} className="hover:text-gray-300">Contact</Link>
             </li>
           </ul>
         </div>
@@ -26,16 +28,16 @@ function Footer() {
           <h5 className="font-bold">Follow Us</h5>
           <ul className="flex space-x-4 mt-2">
             <li>
-              <a href="#facebook" className="hover:text-gray-300">Facebook</a>
+              <Link to={'/facebook'} className="hover:text-gray-300">Facebook</Link>
             </li>
             <li>
-              <a href="#instagram" className="hover:text-gray-300">Instagram</a>
+              <Link to={'/insta'} className="hover:text-gray-300">Instagram</Link>
             </li>
             <li>
-              <a href="#twitter" className="hover:text-gray-300">Twitter</a>
+              <Link to={'/youtube'} className="hover:text-gray-300">Twitter</Link>
             </li>
             <li>
-              <a href="#linkedin" className="hover:text-gray-300">LinkedIn</a>
+              <Link to={'/twitter'} className="hover:text-gray-300">LinkedIn</Link>
             </li>
           </ul>
         </div>
