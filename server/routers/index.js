@@ -44,4 +44,9 @@ router.post('/order', auth, placeOrder);
 router.get('/order', auth, getOrder);
 
 
+
+// ........................................................................................................
+import payment from '../controllers/payment.js';
+router.post('/payment', auth, payment);
+
 export {router}

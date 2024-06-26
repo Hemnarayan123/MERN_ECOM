@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useOrder } from '../context/OrderContext';
+import { useAuth } from '../context/AuthToken';
+import axios from 'axios';
+import {loadStripe} from '@stripe/stripe-js';
+
 
 const BuyNowPage = () => {
   const location = useLocation();
   const { products, product, totalAmount } = location.state || {};
   const [paymentMethod, setPaymentMethod] = useState('');
   const [address, setAddress] = useState('');
-  const [cardDetails, setCardDetails] = useState({ number: '', expiry: '', cvv: '' });
   const { addToCart } = useCart();
   const { placeOrder } = useOrder();
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   const handlePaymentChange = (method) => {
     setPaymentMethod(method);
@@ -20,10 +24,6 @@ const BuyNowPage = () => {
   const handlePlaceOrder = async () => {
     if (paymentMethod === 'cod' && !address) {
       alert('Please enter your address for Cash on Delivery.');
-      return;
-    }
-    if (paymentMethod === 'online' && (!cardDetails.number || !cardDetails.expiry || !cardDetails.cvv)) {
-      alert('Please enter your card details for Online Payment.');
       return;
     }
 
@@ -37,6 +37,26 @@ const BuyNowPage = () => {
 
     await placeOrder();  // Place the order
     navigate('/order-confirmation');  // Redirect to order confirmation page
+  };
+  
+  const handlePayment = async () => {
+    try {
+      const stripePromise = await loadStripe(import.meta.env.REACT_APP_STRIPE_PUBLIC_KEY);
+      const cartItems = products || [{ product, quantity: 1 }];
+      const response = await axios.post('http://localhost:1000/api/v1/payment', { cartItems }, {
+        headers: { 'auth-token': token },
+      });
+
+      console.log(response.data);
+
+      // Handle Stripe checkout
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      }
+    } catch (error) {
+      console.error("Payment error: ", error);
+      alert("Payment failed, please try again.");
+    }
   };
 
   const renderProductDetails = (item) => (
@@ -65,67 +85,13 @@ const BuyNowPage = () => {
           <div className="mb-4">
             <h2 className="text-lg font-bold mb-2">Select Payment Method</h2>
             <div className="flex items-center">
-              <input
-                type="radio"
-                id="cod"
-                name="payment"
-                value="cod"
-                onChange={() => handlePaymentChange('cod')}
-                className="mr-2"
-              />
-              <label htmlFor="cod">Cash on Delivery</label>
+            <button onClick={handlePaymentChange}>Cash on Delivery</button>
+    
             </div>
             <div className="flex items-center">
-              <input
-                type="radio"
-                id="online"
-                name="payment"
-                value="online"
-                onChange={() => handlePaymentChange('online')}
-                className="mr-2"
-              />
-              <label htmlFor="online">Online Payment</label>
+             <button onClick={handlePayment}>Online</button>
             </div>
           </div>
-
-          {paymentMethod === 'cod' && (
-            <div className="mb-4">
-              <h2 className="text-lg font-bold mb-2">Enter Delivery Address</h2>
-              <textarea
-                className="w-full p-2 border rounded-lg"
-                rows="3"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></textarea>
-            </div>
-          )}
-
-          {paymentMethod === 'online' && (
-            <div className="mb-4">
-              <h2 className="text-lg font-bold mb-2">Enter Card Details</h2>
-              <input
-                type="text"
-                placeholder="Card Number"
-                className="w-full p-2 border rounded-lg mb-2"
-                value={cardDetails.number}
-                onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
-              />
-              <input
-                type="text"
-                placeholder="Expiry Date"
-                className="w-full p-2 border rounded-lg mb-2"
-                value={cardDetails.expiry}
-                onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
-              />
-              <input
-                type="text"
-                placeholder="CVV"
-                className="w-full p-2 border rounded-lg mb-2"
-                value={cardDetails.cvv}
-                onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })}
-              />
-            </div>
-          )}
 
           <button
             onClick={handlePlaceOrder}
