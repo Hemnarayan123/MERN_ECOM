@@ -49,4 +49,13 @@ router.get('/order', auth, getOrder);
 import payment from '../controllers/payment.js';
 router.post('/payment', auth, payment);
 
+
+//........................................................................................................
+import search from '../controllers/search.js';
+router.get('/search/:keyword', search)
+
+
+
+
+
 export {router}

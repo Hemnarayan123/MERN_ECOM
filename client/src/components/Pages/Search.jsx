@@ -1,17 +1,17 @@
 import React from 'react'
-import { useAuth } from '../context/AuthToken'
+import { useAuth } from "../context/AuthToken";
 import { Link } from 'react-router-dom';
-import Slider from './Slider';
+function Search() {
 
-function Home() {
 
-  const  {products} = useAuth()
-  return (
-<>
-    <Slider/>
-    <div className="container mx-auto p-4">
+    const { search } = useAuth();
+
+    return (
+        <div>
+            <h1>{!search?.result ? 'No results' : search.result.length < 1 ? 'No results' : `Found ${search.result.length} results`}</h1>
+            <div className="container mx-auto p-4">
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {products.map((product) => (
+      {search?.result.map((product) => (
         <Link key={product._id} to={`/product-detail/${product._id}`} className="max-w-sm rounded overflow-hidden shadow-lg bg-white m-4">
           <img className="w-full object-contain h-64 bg-gray-200" src={`http://localhost:1000/image/${product.image}`} alt={product.name} />
           <div className="px-6 py-4">
@@ -26,8 +26,8 @@ function Home() {
       ))}
     </div>
   </div>
-  </>
-  )
+        </div>
+    );
 }
 
-export default Home
+export default Search

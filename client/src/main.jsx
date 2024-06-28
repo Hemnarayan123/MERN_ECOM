@@ -22,6 +22,7 @@ import Cart from './components/Pages/Cart.jsx';
 import OrderPage from './components/Pages/OrderPage.jsx';
 // import OrderConfirmation from './components/Pages/OrderCon firmation.jsx';
 import BuyNowPage from './components/Pages/BuyNowPage.jsx';
+import Search from './components/Pages/Search.jsx';
 
 
 
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
           { path: '/orders', element: <OrderPage /> }, 
           // { path: '/order-confirmation', element: <OrderConfirmation /> },
           { path: '/buy-now', element: <BuyNowPage /> }, 
+          { path: '/search', element: <Search /> }, 
           { path: 'dashboard', element: 
             <ProtectedRoute roleRequired="admin">
               <AdminDashboard />

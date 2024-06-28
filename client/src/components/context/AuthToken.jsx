@@ -49,8 +49,11 @@ const [products, setProducts] = useState([]);
     fetchProducts();
   },[])
 
+  // ........................................................
+  const [search, setSearch] = useState();
+
   return (
-    <AuthContext.Provider value={{token, tokenGetLocalStorage, isSignIn, SignoutUser, role, products, fetchProducts }}>
+    <AuthContext.Provider value={{token, tokenGetLocalStorage, isSignIn, SignoutUser, role, products, fetchProducts, search, setSearch }}>
       {children}
     </AuthContext.Provider>
   );

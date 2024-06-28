@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthToken";
+import axios from 'axios';
 
 const Header = () => {
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
-  const { isSignIn, SignoutUser, role } = useAuth();
-
+  const { isSignIn, SignoutUser, role, search, setSearch } = useAuth();
+  const navigate = useNavigate();
+  
   const toggleAccountDropdown = () => {
     setAccountDropdownOpen(!accountDropdownOpen);
   };
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.get(`http://localhost:1000/api/v1/search/${search}`);
+        setSearch({ ...search, result: response.data });
+        navigate(`/search`);
+    } catch (error) {
+        console.log(error);
+    }
+};
+  console.log(search);
 
   return (
     <nav className="bg-blue-600 p-4">
@@ -34,13 +48,18 @@ const Header = () => {
             </li>
           )}
         </ul>
-        <div className="flex items-center space-x-4">
-          <input
-            type="text"
-            placeholder="Search products..."
-            className="px-2 py-1 rounded"
-          />
-        </div>
+                  <form onSubmit={handleSearch} className="flex items-center space-x-4">
+                    <input
+                        type="text"
+                        placeholder="Search products..."
+                        className="px-2 py-1 rounded"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button type="submit" className="bg-blue-500 text-white px-4 py-1 rounded">
+                        Search
+                    </button>
+                </form>
         {isSignIn ? (
           <div className="relative flex gap-1">
             <button
