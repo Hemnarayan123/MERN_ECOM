@@ -2,56 +2,50 @@ import React from 'react';
 
 function Contact() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center font-Roboto w-full px-4 py-8 sm:px-6 lg:px-8">
-      <div className="container mx-auto">
-        <div className="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg bg-primbtncolor-0">
-          <h2 className="text-2xl font-bold mb-6 text-center">Contact Us</h2>
-          <form>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
-                placeholder="Enter your name"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
-                placeholder="Enter your email"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows="4"
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
-                placeholder="Enter your message"
-              ></textarea>
-            </div>
-            <div className="text-center">
-              <button
-                type="submit"
-                className="w-full bg-primbtnhover-0 hover:bg-primbtncolor-0 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition duration-300"
-              >
-                Send Message
-              </button>
-            </div>
+  
+    <>
+     <div className="bg-black text-gray-300 font-Roboto min-h-screen flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 py-8 md:flex md:justify-between md:flex-row flex-col gap-10 ">
+        {/* Left section */}
+        <div className="md:w-1/2 mb-8 md:mb-0 bg-blurr-0 p-5 rounded-lg">
+          <h2 className="text-2xl font-Roboto mb-1 text-gray-200">Other ways to connect</h2>
+          <p className="mb-8 text-gray-500  ms-9">
+          We'd love to hear from you. Our friendly team is always here to chat.
+          </p>
+          <div className="mb-4">
+            <h3 className="text-xl  mb-2 text-gray-200">Reach us on email</h3>
+            <p className='text-gray-500  ms-9'>Our friendly team is here to help.</p>
+            <a href="mailto:info@lkphotography.com" className="text-gray-500  ms-9">info@xapxem.com</a>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-xl font-Roboto mb-2 text-gray-200">Our Services</h3>
+          <ul className='list-disc ms-10 text-sm text-gray-500'>
+            <li>Comprehensive and detailed product listings to attract customers.</li>
+            <li>Comprehensive and detailed product listings to attract customers.</li>
+            <li> Efficient order processing and management to ensure timely deliveries.
+            </li>
+            <li> 24/7 customer support to assist with any inquiries or issues.</li>
+            <li> Customized marketing strategies to boost your online presence and sales.</li>
+            <li> Safe and secure payment processing for a hassle-free shopping experience.</li>
+            <li> Detailed analytics and reporting to help you make informed business decisions.</li>
+          </ul>
+          </div>
+          
+        </div>
+
+        {/* Right section */}
+        <div className="md:w-1/2">
+          <h2 className="text-2xl font-bold mb-4">Love to hear from you, Get in touch </h2>
+          <form className="space-y-4">
+            <input type="email" placeholder="Your Email" className="w-full p-2 rounded bg-primbtncolor-0 focus:outline-none focus:ring-2 " />
+         
+            <textarea placeholder="Message" className="w-full p-2 rounded bg-primbtncolor-0 focus:outline-none focus:ring-2 " rows="4"></textarea>
+            <button type="submit" className="w-full p-2 rounded bg-yellow-500 text-gray-500 bg-primbtnhover-0  hover:bg-primbtncolor-0 transition">Send message</button>
           </form>
         </div>
       </div>
     </div>
+    </>
   );
 }
 
