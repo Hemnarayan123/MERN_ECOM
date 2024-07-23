@@ -9,7 +9,7 @@ export const CartProvider = ({ children }) => {
   
   const [cart, setCart] = useState(null);
 
-  const fetchCart = async () => {
+  const fetchCart = async() => {
     try {
       const response = await axios.get('http://localhost:1000/api/v1/cart', {
         headers: { 'auth-token': token }
