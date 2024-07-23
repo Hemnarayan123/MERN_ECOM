@@ -20,15 +20,19 @@ const Allusers = () => {
   }, [token, role]);
 
   if (role !== 'admin') {
-    return <div>Access denied</div>;
+    return <div className="text-center text-xl">Access denied</div>;
   }
 
   return (
-    <div>
-      <h1>All Users</h1>
-      <ul>
+    <div className="bg-blurr-0 mt-10 mx-auto rounded-lg p-4 max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
+      <h1 className="text-center text-xl sm:text-2xl md:text-3xl font-bold font-Roboto mb-4 border-b-2 p-2 border-b-slate-700 text-[#ffffffdf]">
+        All Users
+      </h1>
+      <ul className="list-disc list-inside text-sm sm:text-base md:text-lg text-[#ffffffc1]">
         {users.map(user => (
-          <li key={user._id}>{user.name} - {user.email}</li>
+          <li key={user._id} className="mb-2 p-2 rounded font-Roboto capitalize">
+            {user.name} - {user.email}
+          </li>
         ))}
       </ul>
     </div>

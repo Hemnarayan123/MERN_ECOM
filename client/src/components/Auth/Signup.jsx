@@ -56,8 +56,8 @@ function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen rgb(25, 22, 22) p-4 sm:p-6 lg:p-8">
-      <div className="bg-gray-600 p-6 sm:p-8 lg:p-10 rounded shadow-md w-full max-w-md">
+    <div className="flex items-center justify-center min-h-screen rgb(25, 22, 22) p-4 sm:p-6 lg:p-8 font-Roboto">
+      <div className="bg-gray-600 p-6 sm:p-8 lg:p-10 rounded shadow-md w-[500px] bg-primbtnhover-0 max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">Signup</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -68,7 +68,7 @@ function Signup() {
               type="text"
               id="username"
               name="username"
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded "
               value={formData.username}
               onChange={handleChange}
               required
@@ -83,7 +83,7 @@ function Signup() {
               type="email"
               id="email"
               name="email"
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded "
               value={formData.email}
               onChange={handleChange}
               required
@@ -114,9 +114,9 @@ function Signup() {
           <div className="flex items-center justify-center">
             <button
               type="submit"
-              className="p-4 bg-gray-100   text-gray-900 font-bold py-2 rounded hover:bg-gray-300 transition duration-300"
+              className="p-4 bg-blurr-0 hover:bg-[#006eff8d]    text-gray-200 font-bold py-2 rounded transition duration-300"
             >
-              Signup
+              SignUp
             </button>
           </div>
         </form>

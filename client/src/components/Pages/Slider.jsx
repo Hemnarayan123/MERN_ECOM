@@ -32,11 +32,11 @@ function Slider() {
     
       return (
         <div className="max-w-[1400px] h-[500px] w-full m-auto py-16 px-4 relative group">
-          <div
-            style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
-            className="w-full h-full rounded-2xl bg-center bg-cover duration-1000"
-          ></div>
-    
+        <div
+        style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+        className="w-full h-64 sm:h-80 md:h-96  bg-center bg-cover rounded-2xl duration-200 "
+      ></div>
+
           {/* Left Arrow */}
           <div
             className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer"

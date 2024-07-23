@@ -55,33 +55,33 @@ function Login() {
       }
     };
     return (
-      <div className="flex items-center justify-center min-h-screen rgb(25, 22, 22) p-4 sm:p-6 lg:p-8">
-      <div className="bg-gray-600 p-6 sm:p-8 lg:p-10 rounded shadow-md w-full max-w-md">
+      <div className="flex items-center justify-center min-h-screen rgb(25, 22, 22) p-4 sm:p-6 lg:p-8 ">
+      <div className="bg-gray-600 p-6 sm:p-8 lg:p-10 rounded shadow-md w-full max-w-md bg-primbtnhover-0">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-100">SignIn</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-100 mb-2" htmlFor="email">
+            <label className="block text-gray-100 mb-2 font-Roboto" htmlFor="email">
               Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded bg-blurr-0 text-gray-300 font-Roboto"
               value={data.email}
               onChange={handleChange}
               required
             />
           </div>
           <div className="mb-4 relative">
-            <label className="block text-gray-100 mb-2" htmlFor="password">
+            <label className="block text-gray-100 mb-2 font-Roboto" htmlFor="password">
               Password
             </label>
             <input
               type={showPassword ? "text" : "password"}
               id="password"
               name="password"
-              className="w-full px-3 py-2 border rounded"
+              className="w-full px-3 py-2 border rounded bg-blurr-0 text-gray-300 font-Roboto"
               value={data.password}
               onChange={handleChange}
               required
@@ -93,21 +93,21 @@ function Login() {
               <span>{showPassword ? <RiEyeLine /> : <RiEyeCloseLine />}</span>
             </div>
           </div>
-          <Link to="/forget_password" className="text-gray-100  hover:underline">
+          <Link to="/forget_password" className="text-gray-100  hover:underline font-Roboto">
                 Forget Password
               </Link>
           <div className="flex items-center justify-center">
               <button
                 type="submit"
-                className="p-4 bg-gray-100   text-gray-900 font-bold py-2 rounded hover:bg-gray-300 transition duration-300"
+                className="p-4 bg-gray-100 text-gray-100 font-Roboto bg-blurr-0 hover:bg-[#006eff8d]  font-bold py-2 rounded hover:bg-gray-300 transition duration-300"
               >
                 SignIn
               </button>
             </div>
           <div className="mt-4">
-            <p className="text-center text-gray-900">
+            <p className="text-center text-gray-900 font-Roboto">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-gray-100 hover:underline">
+              <Link to="/signup" className="text-gray-100  bg-blurr-0">
                 SignUp
               </Link>
             </p>

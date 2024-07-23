@@ -14,7 +14,7 @@ const search = async (req, res) => {
         
             $or : [
                 { name: { $regex: keyword, $options: "i" } },      //  for remove case sensitive here defined I  ( i menas Insensitive)
-                { description: { $regex: keyword, $options: "i" } },
+                // { description: { $regex: keyword, $options: "i" } },
                 // { category: { $regex: keyword, $options: "i" } },
                 // { brand: { $regex: keyword, $options: "i" } },
                 // { price: { $regex: keyword, $options: "i" } },
@@ -25,7 +25,7 @@ const search = async (req, res) => {
                 // { reviews: { $regex: keyword, $options: "i" } }
 
             ]
-        }).select('-photo')
+        })
         
         res.json(results);
         

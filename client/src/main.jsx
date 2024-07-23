@@ -12,8 +12,8 @@ import Home from './components/Pages/Home.jsx';
 import Login from './components/Auth/Login.jsx';
 import Signup from './components/Auth/Signup.jsx';
 import Profile from './components/Pages/Profile.jsx';
-import AdminDashboard from './components/Pages/AdminDashboard.jsx';
-import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
+// import AdminDashboard from './components/Pages/AdminDashboard.jsx';
+// import ProtectedRoute from './components/Pages/ProtectedRoute.jsx';
 import Contact from './components/Pages/Contact.jsx';
 import Allusers from './components/Pages/Allusers.jsx';
 import AllProduct from './components/Pages/AllProduct.jsx';
@@ -23,6 +23,7 @@ import OrderPage from './components/Pages/OrderPage.jsx';
 // import OrderConfirmation from './components/Pages/OrderCon firmation.jsx';
 import BuyNowPage from './components/Pages/BuyNowPage.jsx';
 import Search from './components/Pages/Search.jsx';
+
 
 
 
@@ -48,11 +49,11 @@ const router = createBrowserRouter([
           // { path: '/order-confirmation', element: <OrderConfirmation /> },
           { path: '/buy-now', element: <BuyNowPage /> }, 
           { path: '/search', element: <Search /> }, 
-          { path: 'dashboard', element: 
-            <ProtectedRoute roleRequired="admin">
-              <AdminDashboard />
-            </ProtectedRoute>
-          },
+          // { path: 'dashboard', element: 
+          //   <ProtectedRoute roleRequired="admin">
+          //     <AdminDashboard />
+          //   </ProtectedRoute>
+          // },
           { path: '/all-users', element: <Allusers/> }, 
           { path: '/all-products', element: <AllProduct/> }, 
           
